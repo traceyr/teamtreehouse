@@ -1,3 +1,5 @@
+'use strict';
+
 const toggleList = document.getElementById('toggleList');
 const listDiv = document.querySelector('.list');
 const descriptionInput = document.querySelector('input.description');
@@ -17,11 +19,22 @@ listUl.addEventListener('click', (event) => {
     if (event.target.className == 'up') {
       let li = event.target.parentNode;
       let prevLi = li.previousElementSibling;
+      console.log(prevLi);
       let ul = li.parentNode;
       if (prevLi) {
         ul.insertBefore(li, prevLi);
       }
-    }                        
+    }
+    if (event.target.className == 'down'){
+      let li = event.target.parentNode;
+      let nextLi = li.nextElementSibling;
+      let ul = li.parentNode;
+      console.log(nextLi);
+      if (nextLi) {
+        console.log('inside nextLI if');
+        ul.insertBefore(nextLi, li);
+      }
+    }
   }
 });
 
@@ -30,9 +43,9 @@ toggleList.addEventListener('click', () => {
     toggleList.textContent = 'Hide list';
     listDiv.style.display = 'block';
   } else {
-    toggleList.textContent = 'Show list';                        
+    toggleList.textContent = 'Show list';
     listDiv.style.display = 'none';
-  }                         
+  }
 });
 
 descriptionButton.addEventListener('click', () => {
@@ -47,7 +60,3 @@ addItemButton.addEventListener('click', () => {
   ul.appendChild(li);
   addItemInput.value = '';
 });
-  
-  
-  
-  
