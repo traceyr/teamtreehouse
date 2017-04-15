@@ -1,9 +1,10 @@
 'use strict';
 
-$(document).ready(function(){
+console.log($('a').attr('href'));
 
-  $('li').on('click', function() {
-    $(this).text('Clicked!').delay(800).fadeOut(400);
-  });
+$('a').not('[href*="my-domain.com"]').attr('target', '_blank');
 
+$('button').on('click', function(){
+  $('a').attr('href', 'https://github.com/traceyr');
+  console.log($('a').attr('href'));
 });
