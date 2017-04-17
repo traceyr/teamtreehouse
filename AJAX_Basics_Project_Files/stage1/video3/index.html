@@ -25,9 +25,19 @@
   <script>
    let xhr = new XMLHttpRequest();
    xhr.onreadystatechange = function(){
-     if(xhr.readyState === 4){
-       console.log('Success');
-       document.getElementById('ajax').innerHTML = xhr.responseText;
+     if(xhr.readyState === 4 ){
+       if(xhr.status === 200){
+         document.getElementById('ajax').innerHTML = xhr.responseText;
+       }
+      //  else if(xhr.status === 404){
+      //    //file not found
+      //  } else if(xhr.status === 500){
+      //    //server issue
+      //  }
+       else {
+         alert(xhr.statusText);
+       }
+
      }
    }
   xhr.open('GET', 'sidebar.html');
