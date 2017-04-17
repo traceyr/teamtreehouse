@@ -8,5 +8,5 @@ const app = express();
 app.use(express.static('./'));
 
 app.listen(PORT, ()=>{
-  console.log(`Server up on ${PORT}`);
+  console.log(`Server up on PORT ${PORT}`);
 });
