@@ -5,9 +5,6 @@
   <link href='//fonts.googleapis.com/css?family=Varela+Round' rel='stylesheet' type='text/css'>
   <link rel="stylesheet" href="css/main.css">
   <title>AJAX with JavaScript</title>
-  <script>
- 
-  </script>
 </head>
 <body>
   <div class="grid-container centered">
@@ -16,6 +13,7 @@
         <div class="grid-100">
           <div class="heading">
             <h1>Bring on the AJAX</h1>
+            <button id="load">Bring it!</button>
           </div>
           <ul id="ajax">
 
@@ -24,5 +22,33 @@
       </div>
     </div>
   </div>
+  <script>
+   let xhr = new XMLHttpRequest();
+   xhr.onreadystatechange = function(){
+     if(xhr.readyState === 4 ){
+       if(xhr.status === 200){
+         document.getElementById('ajax').innerHTML = xhr.responseText;
+       }
+      //  else if(xhr.status === 404){
+      //    //file not found
+      //  } else if(xhr.status === 500){
+      //    //server issue
+      //  }
+       else {
+         alert(xhr.statusText);
+       }
+
+     }
+   }
+  xhr.open('GET', 'sidebar.html');
+  function sendAjax(){
+    xhr.send();
+    document.getElementById('load').style.display = "none";
+  }
+
+  let ajaxButton = document.getElementById('load');
+  ajaxButton.addEventListener('click', sendAjax);
+
+  </script>
 </body>
 </html>
