@@ -1,7 +1,10 @@
+'use strict';
+
 $(document).ready(function () {
-  $('button').click(function () {
-    $(this).addClass("selected");
+  $('button').on('click',function () {
     $("button").removeClass("selected");
-    
+    $(this).addClass("selected");
+    $.getJSON(flickerAPI, flickrOptions, displayPhotos);
+
   });
 }); // end ready
