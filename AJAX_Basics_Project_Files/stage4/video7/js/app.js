@@ -17,13 +17,19 @@ $(document).ready(function () {
     };
     let displayPhotos = (data) =>{
       let photoHTML = `<ul>`;
-      $.each(data.items, function(i, photo){
-        photoHTML += `<li class="grid-25 tablet-grid-50>"`;
-        photoHTML += `<a href="${photo.link}" class="images" title="${photo.author}">`;
-        photoHTML += `<img src="${photo.media.m}" /></a></li>`;
-      });
+      console.log(data.items.length);
+      if(data.items.length === 0) {
+        photoHTML += `<li> The search ${searchResults} found zero results in flickr. Try a different search!</li>`
+      } else {
+        $.each(data.items, function(i, photo){
+          photoHTML += `<li class="grid-25 tablet-grid-50>"`;
+          photoHTML += `<a href="${photo.link}" class="images" title="${photo.author}">`;
+          photoHTML += `<img src="${photo.media.m}" /></a></li>`;
+        });
+      }
       photoHTML += `</ul>`;
       $('#photos').html(photoHTML);
+      //removes disabled properties
       $searchField.prop('disabled', false);
       $submitButton.attr('disabled', false).val('Submit');
     };
