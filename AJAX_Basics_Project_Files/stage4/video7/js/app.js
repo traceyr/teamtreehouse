@@ -3,6 +3,12 @@ $(document).ready(function () {
   $('form').submit(function (event) {
     event.preventDefault();
     let searchResults = $('#search').val();
+    //makes the user unable to search while a search is happening
+    let $searchField = $('#search');
+    let $submitButton = $('#submit');
+    $searchField.prop('disabled', true);
+    $submitButton.attr('disabled', true).val('searching...');
+
     let flickerAPI = 'https://api.flickr.com/services/feeds/photos_public.gne?jsoncallback=?';
 
     let flickrOptions = {
@@ -18,6 +24,8 @@ $(document).ready(function () {
       });
       photoHTML += `</ul>`;
       $('#photos').html(photoHTML);
+      $searchField.prop('disabled', false);
+      $submitButton.attr('disabled', false).val('Submit');
     };
     $.getJSON(flickerAPI, flickrOptions, displayPhotos);
 
