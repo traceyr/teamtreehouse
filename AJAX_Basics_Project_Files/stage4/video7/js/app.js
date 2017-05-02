@@ -1,12 +1,12 @@
 'use strict';
 $(document).ready(function () {
-  $('button').click(function () {
-    $('button').removeClass('selected');
-    $(this).addClass('selected');
+  $('form').submit(function (event) {
+    event.preventDefault();
+    let searchResults = $('#search').val();
     let flickerAPI = 'https://api.flickr.com/services/feeds/photos_public.gne?jsoncallback=?';
-    let animal = $(this).text();
+
     let flickrOptions = {
-      tags: animal,
+      tags: searchResults,
       format: 'json'
     };
     let displayPhotos = (data) =>{
@@ -22,4 +22,4 @@ $(document).ready(function () {
     $.getJSON(flickerAPI, flickrOptions, displayPhotos);
 
   });
-}); 
+});
