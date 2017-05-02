@@ -2,6 +2,7 @@
 $(document).ready(function () {
   $('form').submit(function (event) {
     event.preventDefault();
+    $('#photos').html('');
     let searchResults = $('#search').val();
     //makes the user unable to search while a search is happening
     let $searchField = $('#search');
@@ -19,7 +20,7 @@ $(document).ready(function () {
       let photoHTML = `<ul>`;
       console.log(data.items.length);
       if(data.items.length === 0) {
-        photoHTML += `<li> The search ${searchResults} found zero results in flickr. Try a different search!</li>`
+        photoHTML += `<li> The search ${searchResults} found zero results in flickr. Try a different search!</li>`;
       } else {
         $.each(data.items, function(i, photo){
           photoHTML += `<li class="grid-25 tablet-grid-50>"`;
